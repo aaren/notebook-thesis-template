@@ -1,0 +1,6 @@
+((*- extends 'base.tplx' -*))
+
+% Override markdown rendering, sorting out internal references
+((* block markdowncell scoped *))
+    ((( cell.source | citation2latex | strip_files_prefix | latex_internal_refs | markdown2latex )))
+((* endblock markdowncell *))
