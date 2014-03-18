@@ -15,9 +15,13 @@ the markdown backend.
 
 I want the following workflow:
 
-- Write in markdown.
+- Write in markdown, using [vim-ipython] for interactivity.
 - Convert markdown to notebook with [notedown]
+- Fiddle around, execute
 - Convert notebook to html / latex with nbconvert.
+
+[vim-ipython]: http://www.github.com/ivanov/vim-ipython
+[notedown]: http://www.github.com/aaren/notedown
 
 
 ### Approach
