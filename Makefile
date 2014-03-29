@@ -4,4 +4,7 @@ latex:
 notebook:
 	notedown example.md > example.ipynb
 
-all: notebook latex
+run-notebook:
+	runipy example.ipynb example.ipynb
+
+all: notebook run-notebook latex
