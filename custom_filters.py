@@ -15,7 +15,7 @@ def latex_internal_references(text):
     return ref_pattern.sub(replacement, text)
 
 
-def markdown2latex(source):
+def explicit_markdown2latex(source):
     """Custom markdown2latex converter with additional options."""
     # args = ['--chapter', '--natbib']
     # return pandoc(source, 'markdown', 'latex', args)
@@ -27,6 +27,11 @@ def markdown2latex(source):
 
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     stdout, stderr = p.communicate(source)
-    # TODO: why does this come out weird? (has extra indentation at start)
     # out = TextIOWrapper(BytesIO(out), encoding, 'replace').read()
     return stdout.rstrip('\n')  # strip trailing whitespace
+
+
+def markdown2latex(source):
+    """Custom markdown2latex converter with additional options."""
+    args = ['--chapter', '--natbib']
+    return pandoc(source, 'markdown', 'latex', args)
