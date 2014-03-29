@@ -2,7 +2,7 @@
 that your notebook represents a chapter. It presumes that you take care of your
 latex formatting elsewhere and only does the basics. 
 
-The mapping from headings to latex goes like this (pandoc default):
+The mapping from headings to latex goes like this (using pandoc --chapter):
 
 ==== -> \chapter
 
@@ -16,6 +16,11 @@ etc.
 =))
 
 ((*- extends 'display_priority.tplx' -*))
+
+% Render markdown
+((* block markdowncell scoped *))
+    ((( cell.source | citation2latex | strip_files_prefix | markdown2latex )))
+((* endblock markdowncell *))
 
 % Display latex
 ((* block data_latex -*))
@@ -46,8 +51,3 @@ etc.
 \end{figure}
 ((*- endblock figure -*))
 ((*- endmacro *))
-
-% Render markdown
-((* block markdowncell scoped *))
-    ((( cell.source | citation2latex | strip_files_prefix | markdown2latex )))
-((* endblock markdowncell *))
