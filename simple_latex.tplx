@@ -1,0 +1,53 @@
+((= This is a really simple template to convert a notebook into latex, assuming
+that your notebook represents a chapter. It presumes that you take care of your
+latex formatting elsewhere and only does the basics. 
+
+The mapping from headings to latex goes like this (pandoc default):
+
+==== -> \chapter
+
+---- -> \section
+
+### -> \subsection
+
+#### -> \subsubsection
+
+etc.
+=))
+
+((*- extends 'display_priority.tplx' -*))
+
+% Display latex
+((* block data_latex -*))
+    ((*- if output.latex.startswith('$'): -*)) 
+        ((= Replace $ symbols with more explicit, equation block. =))
+        \begin{equation*}
+        ((( output.latex | strip_dollars )))
+        \end{equation*}
+    ((*- else -*))
+        ((( output.latex )))
+    ((*- endif *))
+((* endblock data_latex *))
+
+% Default mechanism for rendering figures
+((*- block data_png -*))((( draw_figure(output.png_filename) )))((*- endblock -*))
+((*- block data_jpg -*))((( draw_figure(output.jpeg_filename) )))((*- endblock -*))
+((*- block data_svg -*))((( draw_figure(output.svg_filename) )))((*- endblock -*))
+((*- block data_pdf -*))((( draw_figure(output['application/pdf_filename']) )))((*- endblock -*))
+
+% Draw a figure using the graphicx package.
+((* macro draw_figure(filename) -*))
+((* set filename = filename | posix_path *))
+((*- block figure scoped -*))
+\begin{figure}[ht]
+    \begin{center}
+    \includegraphics{((( filename )))}
+    \end{center}
+\end{figure}
+((*- endblock figure -*))
+((*- endmacro *))
+
+% Render markdown
+((* block markdowncell scoped *))
+    ((( cell.source | citation2latex | strip_files_prefix | markdown2latex )))
+((* endblock markdowncell *))

@@ -2,6 +2,8 @@
 
 import re
 
+from IPython.nbconvert.utils.pandoc import pandoc
+
 
 def latex_internal_references(text):
     """Take markdown text and replace instances of
@@ -11,3 +13,9 @@ def latex_internal_references(text):
     replacement = r'\\autoref{\g<reference>}'
 
     return ref_pattern.sub(replacement, text)
+
+
+def markdown2latex(source):
+    """Custom markdown2latex converter with additional options."""
+    args = ['--chapter', '--natbib']
+    return pandoc(source, 'markdown', 'latex', args)
