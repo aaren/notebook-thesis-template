@@ -1,0 +1,10 @@
+- fix blank lines at start of latex output
+
+something to do with template? it isn't pandoc.
+
+- set figure names to something more descriptive
+
+We will need to use a custom pre-processor. The filename is currently set by
+`IPython.nbconvert.preprocessors.extractoutput.ExtractOutputPreprocessor.output_filename_template`
+
+See nbconvert-examples/custom_preprocessor for an example.
