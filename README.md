@@ -35,7 +35,8 @@ of output in a given format. I need to extend the templates for html
 and latex.
 
 
-### Figure references
+Figure references
+-----------------
 
 Two things to do here:
 
@@ -271,3 +272,51 @@ and in latex (not sure yet!):
         { \hspace*{\fill} \\}                                                                                                                                                          
     ((*- endblock figure -*))                                                                                                                                                          
     ((*- endmacro *))                                                                                                                                                                  
+
+
+
+Citations
+---------
+
+There are two output formats: html and latex. The input is markdown.
+
+We can do our citations in pandoc style, i.e. `@citekey` and
+`[@citekey]'.
+
+With the `--natbib` switch, these get rendered as `\citet` and
+`\citep` in latex and we can then use our normal latex citation
+method.
+
+    pandoc test.md --natbib --to latex
+
+For html output we can use pandoc-citeproc, with the switch
+`--bibliography ref.bib` and a bibtex file `ref.bib`. This renders a
+citation for us.
+
+    pandoc test.md --bibliography ref.bib --to html
+
+Problem: we get a 'references' div at the end of every chunk. We
+operate on a notebook chunk by chunk - is this unavoidable? Can we
+collect all of the references at the end of the document?
+
+Is it a problem? Can we just hide the references div at the end of
+each markdown chunk?
+
+
+Solutions:
+
+1. create a list of citations used as we go along and somehow create
+   bibliography from this at the end.
+
+2. create html with `pandoc --to html` and then regex replace the
+   <span class='citation'>@citekey</span> with whatever html we want
+   it to become.
+
+   We then have to create a list of references at the end. We'd have
+   to create a new cell with this in or we would put it in a special
+   references cell that we've already created.
+
+   Can the filters that we use be methods on a class instance that
+   we alter the state of as we go along? We could then keep track of
+   the citations list as we go along. How do we initialise the
+   class?
