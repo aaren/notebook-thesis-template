@@ -8,3 +8,14 @@ We will need to use a custom pre-processor. The filename is currently set by
 `IPython.nbconvert.preprocessors.extractoutput.ExtractOutputPreprocessor.output_filename_template`
 
 See nbconvert-examples/custom_preprocessor for an example.
+
+- create custom markdown template that lets us export from notebook to markdown
+  with fenced code blocks and no outputs, like we would write for use with
+  notedown.
+
+  use case: write markdown and convert to notebook with notedown. fiddle about
+  in the notebook and save changes. convert back to markdown with the changes
+  saved.
+
+  differences from normal markdown output: fenced code blocks; discard all
+  outputs (your code should be reproducible!)
