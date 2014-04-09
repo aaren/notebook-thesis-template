@@ -1,0 +1,1 @@
+pandoc --to json --bibliography ref.bib --metadata=remove-refs test.md | ./refheader | pandoc --from json --to html

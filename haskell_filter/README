@@ -1,0 +1,11 @@
+This is a filter to be used with pandoc. It lets us remove the references section.
+
+source: https://gist.github.com/jkr/169870aa3b92324a7e63
+
+compile:
+    
+    ghc refheader.hs
+
+usage: 
+
+    pandoc --to json --bibliography ref.bib --metadata=remove-refs test.md | ./refheader | pandoc --from json --to html
