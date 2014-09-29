@@ -1,6 +1,8 @@
-*If you're interested in this then take a look at my [pandoc filter], that does internal references.*
+*If you're interested in this then take a look at my [pandoc filter], that handles internal references in both latex and html output.*
 
 [pandoc filter]: https://github.com/aaren/pandoc-reference-filter
+
+## IPython notebook thesis template
 
 I want to make the IPython Notebook into an environment in which
 a thesis can be written.
