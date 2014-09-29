@@ -2,6 +2,8 @@
 
 [pandoc filter]: https://github.com/aaren/pandoc-reference-filter
 
+---
+
 ## IPython notebook thesis template
 
 I want to make the IPython Notebook into an environment in which
