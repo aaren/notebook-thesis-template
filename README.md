@@ -1,6 +1,12 @@
-*If you're interested in this then take a look at my [pandoc filter], that handles internal references in both latex and html output.*
+*This gets a suprising amount of traffic for something that I'm not working on anymore!*
+*Things that I'm actually working on:*
+- *my (in progress) [thesis], which has a pipeline for building html and pdf from markdown / ipynb.*
+- *[notedown], a tool for converting markdown <-> notebook*
+- *my internal referencing [pandoc filter]*
 
 [pandoc filter]: https://github.com/aaren/pandoc-reference-filter
+[notedown]: https://github.com/aaren/notedown
+[thesis]: https://github.com/aaren/thesis
 
 ---
 
